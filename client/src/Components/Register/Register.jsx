@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import '../../App.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import Axios from 'axios'
 import { FaUserShield } from "react-icons/fa";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
@@ -9,6 +10,27 @@ import video from '../../assets/videomedium.mp4'
 import logo from '../../assets/logo.png'
 
 const Register = () => {
+
+  const[email, setEmail] = useState('')
+  const[userName, setUserName] = useState('')
+  const[password, setPassword] = useState('')
+  const navigateTo = useNavigate()
+
+  const createUser = (e)=>{
+    e.preventDefault()
+    Axios.post('http://localhost:3002/register', {
+      Email: email,
+      UserName: userName,
+      Password: password
+    }).then(()=>{
+      navigateTo('/')
+
+      setEmail('')
+      setUserName('')
+      setPassword('')
+    })
+  }
+
   return (
     <div className='registerPage flex'>
     <div className="container flex">
@@ -41,7 +63,9 @@ const Register = () => {
             <label htmlFor="email">Email</label>
             <div className="input flex">
                 < MdMarkEmailRead className='icon'/>
-                <input type="email" id='email' placeholder='Enter Email'/>
+                <input type="email" id='email' placeholder='Enter Email' onChange={(event)=>{
+                    setEmail(event.target.value)
+                }}/>
             </div>
           </div>
 
@@ -49,7 +73,9 @@ const Register = () => {
             <label htmlFor="username">Username</label>
             <div className="input flex">
                 <FaUserShield className='icon'/>
-                <input type="text" id='username' placeholder='Enter Username'/>
+                <input type="text" id='username' placeholder='Enter Username' onChange={(event)=>{
+                    setUserName(event.target.value)
+                }}/>
             </div>
           </div>
 
@@ -57,11 +83,13 @@ const Register = () => {
             <label htmlFor="passwprd">Password</label>
             <div className="input flex">
                 <BsFillShieldLockFill className='icon'/>
-                <input type="password" id='password' placeholder='Enter Password'/>
+                <input type="password" id='password' placeholder='Enter Password' onChange={(event)=>{
+                    setPassword(event.target.value)
+                }}/>
             </div>
           </div>
 
-          <button type='submit' className='btn flex'>
+          <button type='submit' className='btn flex' onClick={createUser}>
             <span>Register</span>
             <AiOutlineSwapRight className='icon'/>
           </button>
