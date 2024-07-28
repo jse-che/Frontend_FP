@@ -2,12 +2,14 @@ import React, {useState} from 'react'
 import '../../App.css'
 import { Link, useNavigate } from 'react-router-dom'
 import Axios from 'axios'
+
+import video from '../../assets/videomedium.mp4'
+import logo from '../../assets/itsalogo.png'
+
 import { FaUserShield } from "react-icons/fa";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
 import { MdMarkEmailRead } from "react-icons/md";
-import video from '../../assets/videomedium.mp4'
-import logo from '../../assets/logo.png'
 
 const Register = () => {
 

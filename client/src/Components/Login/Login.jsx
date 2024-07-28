@@ -3,11 +3,13 @@ import './Login.css'
 import '../../App.css'
 import { Link, useNavigate } from 'react-router-dom'
 import Axios from 'axios'
+
+import video from '../../assets/videomedium.mp4'
+import logo from '../../assets/itsalogo.png'
+
 import { FaUserShield } from "react-icons/fa";
 import { BsFillShieldLockFill } from "react-icons/bs";
 import { AiOutlineSwapRight } from "react-icons/ai";
-import video from '../../assets/videomedium.mp4'
-import logo from '../../assets/logo.png'
 
 const Login = () => {
 
@@ -75,7 +77,7 @@ const Login = () => {
       <div className="formDiv flex">
         <div className="headerDiv">
           <img src ={ logo } alt='logo Image'></img>
-          <h3>Welcome Back!</h3>
+          <h3>WELCOME BACK!</h3>
         </div>
 
         <form className='form grid' onSubmit={onSubmit}>

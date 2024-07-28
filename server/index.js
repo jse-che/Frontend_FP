@@ -51,9 +51,9 @@ app.post('/login', (req,res)=>{
         if(err){
             res.send({error: err})
         }
-        if(results.length > 0 ){
-            res.send(results)
-        }
+        // if(results.length > 0 ){
+        //     res.send(results)
+        // }
         else{
             res.send({message: 'credentials Don´t match!'})
         }
