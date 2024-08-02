@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './sidebar.css'
 
 import logo from '../../../assets/itsalogo.png'
@@ -8,12 +8,16 @@ import { AiOutlinePieChart } from "react-icons/ai";
 import { BsQuestionCircle } from "react-icons/bs";
 import { IoMdLogOut } from "react-icons/io";
 
+// const Logout = () => {
+//    Axios.get('http://172.16.21.5:5000/logout')
+// }
+
 const Sidebar = () => {
+
   return (
     <div className='sideBar grid'>
       <div className="logoDiv flex">
         <img src={logo} alt="Image Logo"/>
-        <h2>ITSA</h2>
       </div>
 
       <div className="menuDiv">
@@ -22,7 +26,7 @@ const Sidebar = () => {
         </h3>
         <ul className="menuList grid">
           <li className="listItem">
-            <a href="#" className="href menuLink flexdh">
+            <a href="/dashboard" className="href menuLink flex">
               <AiOutlinePieChart className='icondh'/>
               <span className='smallText'>
                 Dashboard
@@ -31,7 +35,25 @@ const Sidebar = () => {
           </li>
 
           <li className="listItem">
-            <a href="#" className="href menuLink flexdh">
+            <a href="/clc" className="href menuLink flex">
+              <IoMdSpeedometer className='icondh'/>
+              <span className='smallText'>
+                Closed Loop Control
+              </span>
+            </a>
+          </li>
+
+          <li className="listItem">
+            <a href="/mac" className="href menuLink flex">
+              <IoMdSpeedometer className='icondh'/>
+              <span className='smallText'>
+                Measuring and Control
+              </span>
+            </a>
+          </li>
+{/* 
+          <li className="listItem">
+            <a href="#" className="href menuLink flex">
               <IoMdSpeedometer className='icondh'/>
               <span className='smallText'>
                 Dashboard
@@ -40,32 +62,13 @@ const Sidebar = () => {
           </li>
 
           <li className="listItem">
-            <a href="#" className="href menuLink flexdh">
+            <a href="#" className="href menuLink flex">
               <IoMdSpeedometer className='icondh'/>
               <span className='smallText'>
                 Dashboard
               </span>
             </a>
-          </li>
-
-          <li className="listItem">
-            <a href="#" className="href menuLink flexdh">
-              <IoMdSpeedometer className='icondh'/>
-              <span className='smallText'>
-                Dashboard
-              </span>
-            </a>
-          </li>
-
-          <li className="listItem">
-            <a href="#" className="href menuLink flexdh">
-              <IoMdSpeedometer className='icondh'/>
-              <span className='smallText'>
-                Dashboard
-              </span>
-            </a>
-          </li>
-
+          </li> */}
         </ul>
       </div>
 
@@ -73,9 +76,9 @@ const Sidebar = () => {
         <h3 className="divTitle">
           SETTING
         </h3>
-        <ul className="menuList griddh">
+        <ul className="menuList grid">
           <li className="listItem">
-            <a href="/" className="href menuLink flexdh">
+            <a href="/" className="menuLink flex">
               <IoMdLogOut className='icondh'/>
               <span className='smallText'>
                 Log Out

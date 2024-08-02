@@ -13,8 +13,8 @@ import { AiOutlineSwapRight } from "react-icons/ai";
 
 const Login = () => {
 
-  const[loginUserName, setLoginUserName] = useState('')
-  const[loginPassword, setLoginPassword] = useState('')
+  const[username, setLoginUserName] = useState('')
+  const[password, setLoginPassword] = useState('')
   const navigateTo = useNavigate()
 
   const [loginStatus, setLoginStatus] = useState ('')
@@ -24,20 +24,26 @@ const Login = () => {
 
     e.preventDefault()
 
-    Axios.post('http://localhost:3002/login', {
-      LoginUserName: loginUserName,
-      LoginPassword: loginPassword
-    }).then((response)=>{
-      console.log()
-
-      if(response.data.message || loginUserName == '' || loginPassword == '' ){
-        navigateTo('/')
-        setLoginStatus('Credentials Don´t Exits!')
-      }
-      else{
-        navigateTo('/dashboard')
-      }
+    Axios.post('http://172.16.21.5:5000/login', {
+      username: username,
+      password: password
     })
+    .then((response)=>{
+      if(response.data.message){
+        setLoginStatus(response.data.message);
+        navigateTo('/')
+        console.log(response)
+      }
+      else if(response){  
+        navigateTo('/dashboard')
+
+      } else {
+        setLoginStatus('Credentials Don’t Exist!');
+      }
+    }).catch((error) => {
+      console.error('There was an error!', error);
+      setLoginStatus('An error occurred. Please try again.');
+    });
   }
 
   useEffect(()=>{
@@ -94,7 +100,7 @@ const Login = () => {
           </div>
 
           <div className="inputDiv">
-            <label htmlFor="passwprd">Password</label>
+            <label htmlFor="password">Password</label>
             <div className="input flex">
                 <BsFillShieldLockFill className='icon'/>
                 <input type="password" id='password' placeholder='Enter Password' onChange={(event)=>{

@@ -100,9 +100,10 @@
 }
 .topSection .cardSection .rightCard .videoDiv video {
   width: 100%;
-  height: 100%;
+  height: 80%;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 10px;
 }
 .topSection .cardSection .rightCard h1, .topSection .cardSection .rightCard p {
   z-index: 100;

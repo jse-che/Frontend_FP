@@ -9,9 +9,10 @@
     .logoDiv{
         padding: 1.5rem 1.5rem 0;
         cursor: pointer;
+        justify-content: center;
 
         img{
-            max-width: 60px;
+            max-width: 85px;
             margin-right: .5rem;
             background: var(--whiteColor);
             border-radius: 2px;

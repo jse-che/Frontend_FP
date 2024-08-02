@@ -10,11 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^5.16.6",
     "axios": "^1.7.2",
+    "chart.js": "^4.4.3",
+    "jlick": "^0.0.4",
     "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-icons": "^5.2.1",
-    "react-router-dom": "^6.25.0"
+    "react-router-dom": "^6.25.0",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5",
+    "tremor": "^0.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

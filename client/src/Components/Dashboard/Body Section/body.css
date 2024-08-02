@@ -5,9 +5,10 @@
   overflow: auto;
 }
 .mainContent .bottom {
-  margin-top: 2rem;
+  margin-top: 5rem;
   gap: 2rem;
   align-items: flex-start;
+  margin-left: 1rem;
 }
 
 @media screen and (max-width: 918px) {

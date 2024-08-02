@@ -1,0 +1,84 @@
+.viewMain {
+  width: 82%;
+  height: 100%;
+  padding: 2rem;
+  overflow: auto;
+}
+.viewMain .viewContent {
+  width: 100%;
+  height: 82%;
+  margin-top: 5rem;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-left: 1rem;
+  flex-direction: column;
+}
+
+.containerCloseCards {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  gap: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.Cards1, .Cards2 {
+  background-color: var(--whiteColor);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--textColor);
+  overflow: hidden;
+  width: 25rem;
+  justify-content: center;
+  padding: 1rem;
+  height: 280px;
+}
+
+.Cards3 {
+  background-color: var(--whiteColor);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--textColor);
+  overflow: hidden;
+  width: 25rem;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.containerControl {
+  margin-top: 20px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.containerControl {
+  margin-top: 20px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -20px;
+}
+
+.Cardspid {
+  background-color: var(--whiteColor);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--textColor);
+  padding: 1rem;
+  align-items: center;
+  justify-content: right;
+  overflow: hidden;
+  width: 500px;
+  height: 160px;
+  transform: translateX(-320px);
+  gap: 1rem;
+}
+
+@media screen and (max-width: 918px) {
+  .bottom {
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=viewSection.css.map */

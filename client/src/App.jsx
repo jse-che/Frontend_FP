@@ -2,6 +2,8 @@ import './App.css'
 import Dashboard from './Components/Dashboard/Dashboard.jsx'
 import Login from './Components/Login/Login.jsx'
 import Register from './Components/Register/Register.jsx'
+import Listing from './Components/Dashboard/Body Section/Listing Closed Section/Listing.jsx'
+import Measuring from './Components/Dashboard/Body Section/Listing Measuring Section/Measuring.jsx'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 
 
@@ -18,6 +20,16 @@ const router = createBrowserRouter([
     path: '/dashboard',
     element: <div><Dashboard/></div>
   }
+  ,
+  {
+    path: '/clc',
+    element: <div><Listing/></div>
+  },
+  {
+    path: '/mac',
+    element: <div><Measuring/></div>
+  }
+
 ])
 
 function App() {

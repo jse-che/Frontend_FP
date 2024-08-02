@@ -1,61 +1,111 @@
-const express = require('express')
-const app = express()
-const mysql = require('mysql')
-const cors = require('cors')
+const express = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
+const cors = require('cors');
 
-app.use(express.json())
-app.use(cors())
+const app = express();
 
-app.listen(3002, ()=>{
-    console.log('server is running on port 3002')
-})
+app.use(cors());
 
-// Create Database (mysql)
-const db = mysql.createConnection({
-    user: 'root',
-    host: 'localhost',
-    password: '',
-    database: 'final_projectdb'
-})
+const server = http.createServer(app);
 
-//routes
+const io = socketIo(server, {
+    cors: {
+        origin: "http://localhost:5173",
+        methods: ["GET", "POST"]
+    }
+});
 
-app.post('/register', (req,rest)=>{
-    const sentEmail = req.body.Email
-    const sentUserName = req.body.UserName
-    const sentPassword = req.body.Password
+const PORT = process.env.PORT || 3000;
 
-    const SQL = 'INSERT INTO Users (email, username, password) VALUES (?,?,?)'
-    const Values = [sentEmail, sentUserName, sentPassword]
+app.use(express.static('public'));
 
-    db.query(SQL, Values, (err, results)=>{
-        if(err){
-            rest.send(err)
-        }
-        else{
-            console.log('User inserted successfully')
-            rest.send({message: 'User added!'})
-        }
-    })
-})
+io.on('connection', (socket) => {
+    console.log('Un cliente se ha conectado');
 
-app.post('/login', (req,res)=>{
 
-    const sentloginUserName = req.body.LoginUserName
-    const sentloginPassword = req.body.LoginPassword
+    socket.on('message', (data) => {
+        console.log('Mensaje del cliente:', data);
+        socket.emit('message', 'Hola desde el servidor');
+    });
+    
+    socket.on('disconnect', () => {
+        console.log('Un cliente se ha desconectado');
+    });
 
-    const SQL = 'SELECT * FROM users WHERE username = ? && password'
-    const Values = [sentloginUserName, sentloginPassword]
+    setInterval(() => {
+        const data = {
+            tankLevel: Math.floor(Math.random() * 101), 
+            flowLevel: Math.floor(Math.random() * 101),
+            temperatureLevel: Math.floor(Math.random() * 101)
+        };
+        socket.emit('data', data);
+    }, 1000); 
+});
 
-    db.query(SQL, Values, (err, results)=>{
-        if(err){
-            res.send({error: err})
-        }
-        // if(results.length > 0 ){
-        //     res.send(results)
-        // }
-        else{
-            res.send({message: 'credentials Don´t match!'})
-        }
-    })
-})
+server.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
+});
+
+
+// const express = require('express')
+// const app = express()
+// const mysql = require('mysql')
+// const cors = require('cors')
+
+// app.use(express.json())
+// app.use(cors())
+
+// app.listen(3002, ()=>{
+//     console.log('server is running on port 3002')
+// })
+
+// // Create Database (mysql)
+// const db = mysql.createConnection({
+//     user: 'root',
+//     host: 'localhost',
+//     password: '',
+//     database: 'final_projectdb'
+// })
+
+// //routes
+
+// app.post('/register', (req,res)=>{
+//     const sentEmail = req.body.Email
+//     const sentUserName = req.body.UserName
+//     const sentPassword = req.body.Password
+
+//     const SQL = 'INSERT INTO Users (email, username, password) VALUES (?,?,?)'
+//     const Values = [sentEmail, sentUserName, sentPassword]
+
+//     db.query(SQL, Values, (err, results)=>{
+//         if(err){
+//             res.send(err)
+//         }
+//         else{
+//             console.log('User inserted successfully')
+//             res.send({message: 'User added!'})
+//         }
+//     })
+// })
+
+// app.post('/login', (req,res)=>{
+
+//     const sentloginUserName = req.body.LoginUserName
+//     const sentloginPassword = req.body.LoginPassword
+
+//     const SQL = 'SELECT * FROM Users WHERE username = ? AND password = ?';
+//     const Values = [sentloginUserName, sentloginPassword]
+
+//     db.query(SQL, Values, (err, results)=>{
+//         if(err){
+//             res.send({error: err})
+//         } else {
+//             if (results.length > 0) {
+//                 res.send(results);
+//             } else {
+//                 res.send({ message: 'credentials Don’t match!' });
+//             }
+//         }
+//     })
+// })
