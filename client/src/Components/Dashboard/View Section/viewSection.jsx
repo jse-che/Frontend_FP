@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
+
 import { Stack, Typography, Slider, Button, Box, Tooltip, Grid, styled } from '@mui/material';
-import MuiInput from '@mui/material/Input'
+import MuiInput from '@mui/material/Input';
+
+import { Line } from 'react-chartjs-2';
+import 'chart.js/auto';
 
 import '../View Section/viewSection.css';
 import Up from "../Up Section Closed/upSection";
-
 
 const Input = styled(MuiInput)`
   width: 35px;
@@ -18,7 +21,8 @@ const View = () => {
   const [pidValues, setPidValues] = useState({
     P: 0,
     I: 0,
-    D: 0
+    D: 0,
+    SP: 0 
   });
 
   const [levels, setLevels] = useState({
@@ -30,18 +34,91 @@ const View = () => {
   const inputLabels = {
     P: "Kp",
     I: "Tr",
-    D: "Td"
+    D: "Td",
+    SP: "Sp"
   };
 
   const barrLabels = {
-    tankLevel: "TK",
-    flowLevel: "F",
-    temperatureLevel: "T"
+    tankLevel: "SP",
+    flowLevel: "PV",
+    temperatureLevel: "CP"
+  };
+
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: 'X',
+        data: [],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1,
+        pointRadius: 0
+      },
+      {
+        label: 'SP',
+        data: [],
+        fill: false,
+        borderColor: 'rgb(255, 99, 132)',
+        tension: 0.1,
+        pointRadius: 0
+      }
+    ]
+  });
+
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+      },
+      tooltip: {},
+      annotation: {
+        annotations: {
+          line1: {
+            type: 'line',
+            yMin: pidValues.SP,
+            yMax: pidValues.SP,
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 2,
+            label: {
+              content: 'SP',
+              enabled: true,
+              position: 'end',
+              backgroundColor: 'rgb(255, 99, 132)',
+              color: '#fff',
+              font: {
+                size: 12
+              }
+            }
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: 'Tiempo'
+        }
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: 'Valor'
+        }
+      }
+    }
   };
 
   useEffect(() => {
     const socketInstance = io(socketServerURL);
-
     setSocket(socketInstance);
 
     socketInstance.on('connect', () => {
@@ -50,10 +127,20 @@ const View = () => {
 
     socketInstance.on('data', (data) => {
       console.log("Datos del servidor:", data);
-      setLevels({
-        tankLevel: data.tankLevel,
+      setLevels((prevLevels) => ({
+        ...prevLevels,
         flowLevel: data.flowLevel,
         temperatureLevel: data.temperatureLevel
+      }));
+    });
+
+    socketInstance.on('message', (data) => {
+      console.log("Mensaje del servidor:", data);
+      setChartData((prevChartData) => {
+        const newChartData = { ...prevChartData };
+        newChartData.labels.push(new Date().toLocaleTimeString());
+        newChartData.datasets[0].data.push(data.value);
+        return newChartData;
       });
     });
 
@@ -62,19 +149,49 @@ const View = () => {
     };
   }, []);
 
-  const handleSliderChange = (name) => (event, newValue) => {
-    setPidValues((prevValues) => ({
-      ...prevValues,
-      [name]: newValue
-    }));
-  };
-
   const handleInputChange = (name) => (event) => {
     const value = event.target.value === '' ? 0 : Number(event.target.value);
     setPidValues((prevValues) => ({
       ...prevValues,
       [name]: value
     }));
+    if (name === 'SP') {
+      setLevels((prevLevels) => ({
+        ...prevLevels,
+        tankLevel: value
+      }));
+      setChartData((prevChartData) => {
+        const newChartData = { ...prevChartData };
+        newChartData.datasets[1].data.push(value);
+        newChartData.labels.push(new Date().toLocaleTimeString());
+        return newChartData;
+      });
+    }
+    if (socket) {
+      socket.emit('pidValuesChange', { [name]: value });
+    }
+  };
+
+  const handleSliderChange = (name) => (event, newValue) => {
+    setPidValues((prevValues) => ({
+      ...prevValues,
+      [name]: newValue
+    }));
+    if (name === 'SP') {
+      setLevels((prevLevels) => ({
+        ...prevLevels,
+        tankLevel: newValue
+      }));
+      setChartData((prevChartData) => {
+        const newChartData = { ...prevChartData };
+        newChartData.datasets[1].data.push(newValue);
+        newChartData.labels.push(new Date().toLocaleTimeString());
+        return newChartData;
+      });
+    }
+    if (socket) {
+      socket.emit('pidValuesChange', { [name]: newValue });
+    }
   };
 
   const handleBlur = (name) => () => {
@@ -101,12 +218,34 @@ const View = () => {
     setPidValues({
       P: 0,
       I: 0,
-      D: 0
+      D: 0,
+      SP: 0
     });
     setLevels({
       tankLevel: 0,
       flowLevel: 0,
       temperatureLevel: 0
+    });
+    setChartData({
+      labels: [],
+      datasets: [
+        {
+          label: 'X',
+          data: [],
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1,
+          pointRadius: 0
+        },
+        {
+          label: 'SP',
+          data: [],
+          fill: false,
+          borderColor: 'rgb(255, 99, 132)',
+          tension: 0.1,
+          pointRadius: 0
+        }
+      ]
     });
   };
 
@@ -115,8 +254,10 @@ const View = () => {
       <Up />
       <div className='viewContent flex'>
         <div className="containerCloseCards">
-          <div className="Cards1 flex"></div>
-          <div className="Cards2 flex"></div>
+          <div className="cardControl1 flex"></div>
+          <div className="cardControl2 flex">
+            <Line data={chartData} options={chartOptions} />
+          </div>
         </div>
         <div className="containerControl">
           <div className="Cardspid flex">
@@ -127,11 +268,11 @@ const View = () => {
                     <Box key={name} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: 120 }}>
                       <Typography>{barrLabels[name]}</Typography>
                       <Box sx={{ ml: 1.3, display: 'flex', justifyContent: 'flex-end', flexDirection: 'column', height: '100%', width: 30, border: '1px solid #ccc', borderRadius: 2, overflow: 'hidden', mb: 2 }}>
-                        <Tooltip title={`${levels[name]}%`} arrow>
+                        <Tooltip title={`${levels[name]}`} arrow>
                           <Box
                             sx={{
                               backgroundColor: 'primary.main',
-                              height: `${levels[name]}%`,
+                              height: `${levels[name] * 10}%`,
                               width: '100%',
                               transition: 'height 0.3s ease'
                             }}
@@ -145,8 +286,8 @@ const View = () => {
             </Grid>
             <Grid container spacing={1} sx={{ mr: 2 }}>
               <Grid item>
-                <Stack spacing={2} direction="column">
-                  {['P', 'I', 'D'].map((name) => (
+                <Stack spacing={1} direction="column">
+                  {['P', 'I', 'D', 'SP'].map((name) => (
                     <div key={name} style={{ display: 'flex', alignItems: 'center' }}>
                       <Typography sx={{ mr: 1 }}>{inputLabels[name]}</Typography>
                       <Input
@@ -168,7 +309,7 @@ const View = () => {
                 </Stack>
               </Grid>
               <Grid item>
-                <Stack sx={{ height: 110, ml: 0, mt: 0 }} spacing={1} direction="row">
+                <Stack sx={{ height: 110, ml: 0, mt: 1.3 }} spacing={1} direction="row">
                   {['P', 'I', 'D'].map((name) => (
                     <div key={name} style={{ textAlign: 'center' }}>
                       <Typography id={`input-slider-${name}`}>{name}</Typography>
@@ -210,3 +351,4 @@ const View = () => {
 }
 
 export default View;
+

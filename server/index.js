@@ -23,24 +23,28 @@ app.use(express.static('public'));
 io.on('connection', (socket) => {
     console.log('Un cliente se ha conectado');
 
-
     socket.on('message', (data) => {
         console.log('Mensaje del cliente:', data);
         socket.emit('message', 'Hola desde el servidor');
     });
-    
+
+    socket.on('pidValuesChange', (data) => {
+        console.log('Valores PID recibidos:', data);
+    });
+
     socket.on('disconnect', () => {
         console.log('Un cliente se ha desconectado');
     });
 
     setInterval(() => {
         const data = {
-            tankLevel: Math.floor(Math.random() * 101), 
-            flowLevel: Math.floor(Math.random() * 101),
-            temperatureLevel: Math.floor(Math.random() * 101)
+            flowLevel: Math.floor(Math.random() * 11),
+            temperatureLevel: Math.floor(Math.random() * 11),
+            value: Math.floor(Math.random() * 11) 
         };
         socket.emit('data', data);
-    }, 1000); 
+        socket.emit('message', data);
+    }, 5000); 
 });
 
 server.listen(PORT, () => {
