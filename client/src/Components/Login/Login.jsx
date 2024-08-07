@@ -24,7 +24,12 @@ const Login = () => {
 
     e.preventDefault()
 
-    Axios.post('http://172.16.21.5:5000/login', {
+    // Axios.post('http://172.16.21.5:5000/login', {
+    //   username: username,
+    //   password: password
+    // })
+
+    Axios.post('http://localhost:3002/register', {
       username: username,
       password: password
     })

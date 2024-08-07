@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:5173/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="module">
+import RefreshRuntime from "/@react-refresh"
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => {}
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+
+    <script type="module" src="./DCS_files/client"></script>
+
+    
+    <link rel="icon" type="image" href="http://localhost:5173/src/assets/faviconitsa.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCS</title>
+  <style type="text/css" data-vite-dev-id="D:/Jose/FRONTEND FINAL PROJECT/client/src/App.css">@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+:root {
+  --primaryColor: hsl(210, 100%, 50%);
+  --hoverColor: hsl(210, 73%, 68%);
+  --paleGreen: hsl(210, 100%, 95%);
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 18%);
+  --greyText: hsl(0, 0%, 75%);
+  --bgColor: hsl(113, 11%, 85%);
+  --inputColor: hsl(330, 12%, 97%);
+  --textColor: hsl(240, 1%, 48%);
+  --bgdhColor: hsl(220, 10%, 94%);
+  --greyTextdh: rgb(190, 190, 190);
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: .938rem;
+  --smallFontSize: .813rem;
+  --smallestFontSize: .75rem;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.grid {
+  display: grid;
+  align-items: center;
+  gap: 1.5rem;
+}
+html {
+  font-size: 90%;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+.icon {
+  font-size: var(--h2FontSize);
+  cursor: pointer;
+}
+img, video {
+  height: auto;
+  width: 100%;
+}
+.message {
+  display: none;
+}
+.showMessage {
+  display: block;
+  color: var(--whiteColor);
+  padding: 10px;
+  background: rgb(255, 0, 0);
+  border-radius: 3px;
+  text-align: center;
+}
+.showMessage {
+  display: block;
+  color: var(--whiteColor);
+  background: rgb(255, 0, 0);
+  border-radius: 3px;
+  text-align: center;
+}
+.btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 8px;
+  background: var(--primaryColor);
+  padding: 0.8rem 1rem;
+  color: var(--greyText);
+}
+.btn .icon {
+  margin-left: 0.5rem;
+}
+.btn:hover {
+  color: var(--primaryColor);
+  background: var(--paleGreen);
+}
+.loginPage, .registerPage {
+  height: 100vh;
+  width: 100%;
+  margin: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 7px 50px rgb(214, 223, 213);
+}
+.loginPage .container, .registerPage .container {
+  height: 75vh;
+  width: 60%;
+  margin: auto;
+  justify-content: space-between;
+  border-radius: 10px;
+  background: hsl(0, 0%, 91%);
+}
+.loginPage .container .videoDiv, .registerPage .container .videoDiv {
+  position: relative;
+  display: flex;
+  flex-basis: 50%;
+  width: 70%;
+  height: 100%;
+  padding: 0 1.5rem;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.loginPage .container .videoDiv video, .loginPage .container .videoDiv .footerDiv, .registerPage .container .videoDiv video, .registerPage .container .videoDiv .footerDiv {
+  position: absolute;
+}
+.loginPage .container .videoDiv video, .registerPage .container .videoDiv video {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.loginPage .container .videoDiv .textDiv, .registerPage .container .videoDiv .textDiv {
+  position: relative;
+}
+.loginPage .container .videoDiv .textDiv .title, .registerPage .container .videoDiv .textDiv .title {
+  color: var(--whiteColor);
+  font-size: 35px;
+  font-weight: 800;
+}
+.loginPage .container .videoDiv .textDiv p, .registerPage .container .videoDiv .textDiv p {
+  color: var(--whiteColor);
+  padding: 1rem;
+  font-weight: 400;
+}
+.loginPage .container .videoDiv .footerDiv, .registerPage .container .videoDiv .footerDiv {
+  bottom: 10px;
+  padding: 0 1rem;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.562);
+  left: 10px;
+  right: 10px;
+  justify-content: space-between;
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+  border-radius: 10px;
+}
+.loginPage .container .videoDiv .footerDiv .text, .registerPage .container .videoDiv .footerDiv .text {
+  color: var(--blackColor);
+}
+.loginPage .container .videoDiv .footerDiv .btn, .registerPage .container .videoDiv .footerDiv .btn {
+  background: var(--whiteColor);
+  color: var(--primaryColor);
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 400;
+  transition: 0.3s ease;
+}
+.loginPage .container .videoDiv .footerDiv .btn:hover, .registerPage .container .videoDiv .footerDiv .btn:hover {
+  background: var(--hoverColor);
+  color: var(--blackColor);
+}
+.loginPage .container .formDiv, .registerPage .container .formDiv {
+  flex-basis: 50%;
+  margin: auto;
+  flex-direction: column;
+  gap: 1.5rem;
+  transform: translatey(-1rem);
+}
+.loginPage .container .formDiv .headerDiv, .registerPage .container .formDiv .headerDiv {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+.loginPage .container .formDiv .headerDiv img, .registerPage .container .formDiv .headerDiv img {
+  width: 70px;
+  padding-bottom: 0.5rem;
+}
+.loginPage .container .formDiv .headerDiv h3, .registerPage .container .formDiv .headerDiv h3 {
+  font-size: 25px;
+  color: var(--blackColor);
+  font-weight: 600;
+}
+.loginPage .container .formDiv .form, .registerPage .container .formDiv .form {
+  gap: 1rem;
+}
+.loginPage .container .formDiv .form .inputDiv .icon, .registerPage .container .formDiv .form .inputDiv .icon {
+  color: var(--greyText);
+}
+.loginPage .container .formDiv .form input, .registerPage .container .formDiv .form input {
+  background: none;
+  outline: none;
+  border: none;
+  width: 200px;
+}
+.loginPage .container .formDiv .form label, .registerPage .container .formDiv .form label {
+  color: var(--blackColor);
+  font-weight: 400;
+  font-size: 14px;
+  padding: 0.5rem 0;
+  display: block;
+}
+.loginPage .container .formDiv .form .input, .registerPage .container .formDiv .form .input {
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--inputColor);
+  border-radius: 10px;
+}
+.loginPage .container .formDiv .btn, .registerPage .container .formDiv .btn {
+  padding: 0.8rem;
+  background: var(--primaryColor);
+  border-radius: 10px;
+  color: var(--whiteColor);
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: center;
+  font-size: 16px;
+  width: 100%;
+  gap: 0.5rem;
+  transition: 0.3s ease;
+}
+.loginPage .container .formDiv .btn .icon, .registerPage .container .formDiv .btn .icon {
+  font-size: 25px;
+  transition: 0.3s ease;
+}
+.loginPage .container .formDiv .btn:hover, .registerPage .container .formDiv .btn:hover {
+  background: var(--hoverColor);
+  color: var(--blackColor);
+}
+.loginPage .container .formDiv .btn:hover .icon, .registerPage .container .formDiv .btn:hover .icon {
+  color: var(--blackColor);
+  transform: translateX(5px);
+}
+.loginPage .container .formDiv .forgotPassword, .registerPage .container .formDiv .forgotPassword {
+  font-size: 13px;
+  color: var(--blackColor);
+  opacity: 0.7;
+  text-align: center;
+}
+.loginPage .container .formDiv .forgotPassword a, .registerPage .container .formDiv .forgotPassword a {
+  text-decoration: underline;
+  cursor: pointer;
+  opacity: 1;
+}
+@media screen and (max-width: 602px) {
+  .loginPage .container, .registerPage .container {
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+  .loginPage .container .videoDiv, .registerPage .container .videoDiv {
+    width: 100%;
+  }
+  .loginPage .container .videoDiv .textDiv .title, .registerPage .container .videoDiv .textDiv .title {
+    font-size: 20px;
+  }
+  .loginPage .container .videoDiv .textDiv p, .registerPage .container .videoDiv .textDiv p {
+    padding: 1rem;
+  }
+  .loginPage .container .videoDiv .footerDiv .text, .registerPage .container .videoDiv .footerDiv .text {
+    font-size: 12px;
+  }
+  .loginPage .container .videoDiv .footerDiv .btn, .registerPage .container .videoDiv .footerDiv .btn {
+    padding: 0.4rem 1.5rem;
+  }
+  .loginPage .container .videoDiv .formDiv, .registerPage .container .videoDiv .formDiv {
+    gap: 1rem;
+    transform: translateY(-0.5rem);
+  }
+  .loginPage .container .videoDiv .formDiv .headerDiv, .registerPage .container .videoDiv .formDiv .headerDiv {
+    padding: 1rem 0;
+  }
+  .loginPage .container .videoDiv .formDiv .headerDiv img, .registerPage .container .videoDiv .formDiv .headerDiv img {
+    width: 40px;
+  }
+  .loginPage .container .videoDiv .formDiv .headerDiv h3, .registerPage .container .videoDiv .formDiv .headerDiv h3 {
+    font-size: 20px;
+  }
+  .loginPage .container .videoDiv .formDiv .form, .registerPage .container .videoDiv .formDiv .form {
+    gap: 0.5rem;
+  }
+  .loginPage .container .videoDiv .formDiv .form .inputDiv .input, .registerPage .container .videoDiv .formDiv .form .inputDiv .input {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 678px) {
+  .loginPage .container .videoDiv .textDiv .title, .registerPage .container .videoDiv .textDiv .title {
+    font-size: 25px;
+  }
+  .loginPage .container .videoDiv .textDiv p, .registerPage .container .videoDiv .textDiv p {
+    padding: 1rem;
+  }
+  .loginPage .container .videoDiv .footerDiv .text, .registerPage .container .videoDiv .footerDiv .text {
+    font-size: 12px;
+  }
+  .loginPage .container .videoDiv .footerDiv .btn, .registerPage .container .videoDiv .footerDiv .btn {
+    padding: 0.8rem 1.5rem;
+  }
+  .loginPage .container .videoDiv .formDiv .headerDiv, .registerPage .container .videoDiv .formDiv .headerDiv {
+    padding: 1.5rem 0;
+  }
+  .loginPage .container .videoDiv .formDiv .headerDiv h3, .registerPage .container .videoDiv .formDiv .headerDiv h3 {
+    font-size: 20px;
+  }
+  .loginPage .container .videoDiv .formDiv .form .inputDiv .input, .registerPage .container .videoDiv .formDiv .form .inputDiv .input {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+@media screen and (max-width: 927px) {
+  .loginPage .container, .registerPage .container {
+    width: 85%;
+  }
+}
+::-webkit-scrollbar {
+  display: none;
+}                                   </style><style type="text/css" data-vite-dev-id="D:/Jose/FRONTEND FINAL PROJECT/client/src/Components/Dashboard/Dashboard.css">.dashboardPage {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  transition: 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.icondh {
+  font-size: var(--h2FontSize);
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.flexdh {
+  display: flex;
+  align-items: center;
+}
+
+.griddh {
+  display: grid;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.botndh .icon {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--inputColor);
+  padding: 0.8rem 1rem;
+  color: var(--greyText);
+}
+
+.botndh:hover {
+  background: var(--paleBlue);
+  color: var(--primaryColor);
+}
+
+.containerBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 1rem;
+}
+
+.container {
+  position: relative;
+  width: 95vw;
+  height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bgdhColor);
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 8px var(--greyText);
+}
+
+@media screen and (max-width: 990px) {
+  .heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}                                         </style><style type="text/css" data-vite-dev-id="D:/Jose/FRONTEND FINAL PROJECT/client/src/Components/Dashboard/SideBar Section/sidebar.css">.sideBar {
+  background: var(--whiteColor);
+  box-shadow: 1px 0px 4px var(--greyText);
+  width: 18%;
+  height: 100%;
+  gap: 3rem;
+  overflow: auto;
+}
+.sideBar .logoDiv {
+  padding: 1.5rem 1.5rem 0;
+  cursor: pointer;
+  justify-content: center;
+}
+.sideBar .logoDiv img {
+  max-width: 85px;
+  margin-right: 0.5rem;
+  background: var(--whiteColor);
+  border-radius: 2px;
+  padding: 0.2rem;
+}
+.sideBar .logoDiv h2 {
+  font-size: var(--h2FontSize);
+  color: var(--primaryColor);
+}
+.sideBar .menuDiv .divTitle, .sideBar .settingDiv .divTitle {
+  font-size: var(--h3FontSize);
+  color: var(--blackColor);
+  padding: 0 1.5rem 1.5rem;
+}
+.sideBar .menuDiv .menuList .listItem, .sideBar .settingDiv .menuList .listItem {
+  padding: 0.2rem 1.5rem;
+  width: 100%;
+  position: relative;
+}
+.sideBar .menuDiv .menuList .listItem::before, .sideBar .settingDiv .menuList .listItem::before {
+  position: absolute;
+  content: "";
+  height: 0%;
+  left: 0;
+  width: 5px;
+  bottom: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: var(--primaryColor);
+}
+.sideBar .menuDiv .menuList .listItem .menuLink, .sideBar .settingDiv .menuList .listItem .menuLink {
+  color: var(--greyTextdh);
+  font-weight: 500;
+  transition: 0;
+}
+.sideBar .menuDiv .menuList .listItem .menuLink .icondh, .sideBar .settingDiv .menuList .listItem .menuLink .icondh {
+  margin-right: 0.5rem;
+}
+.sideBar .menuDiv .menuList .listItem:hover .menuLink, .sideBar .settingDiv .menuList .listItem:hover .menuLink {
+  color: var(--primaryColor);
+  transition: 0;
+}
+.sideBar .menuDiv .menuList .listItem:hover::before, .sideBar .settingDiv .menuList .listItem:hover::before {
+  height: 100%;
+  transition: 0.3s ease;
+}
+.sideBar .sideBarCard {
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+}
+.sideBar .sideBarCard .icondh {
+  position: absolute;
+  background: var(--hoverColor);
+  border: 10px solid var(--whiteColor);
+  font-size: 3rem;
+  border-radius: 50%;
+  top: -8px;
+  right: 50%;
+  transform: translate(50%);
+  z-index: 100;
+}
+.sideBar .sideBarCard .cardContent {
+  position: relative;
+  padding: 1rem;
+  background: var(--hoverColor);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.sideBar .sideBarCard .cardContent h3 {
+  font-size: var(--h3FontSize);
+  margin: 1rem;
+  font-weight: 800;
+  color: var(--blackColor);
+}
+.sideBar .sideBarCard .cardContent p {
+  font-size: var(--normalFontSize);
+  color: var(--textColor);
+  padding-bottom: 1rem;
+  font-weight: 500;
+}
+.sideBar .sideBarCard .cardContent .circle1, .sideBar .sideBarCard .cardContent .circle2 {
+  position: absolute;
+  background: var(--paleGreen);
+  border-radius: 50%;
+  opacity: 0.7;
+}
+.sideBar .sideBarCard .cardContent .circle1 {
+  height: 100px;
+  width: 100px;
+  top: -50px;
+  left: -50px;
+}
+.sideBar .sideBarCard .cardContent .circle2 {
+  height: 125px;
+  width: 125px;
+  bottom: -80px;
+  right: -70px;
+  z-index: 1;
+}
+
+@media screen and (max-width: 820px) {
+  .sideBar {
+    padding-bottom: 2rem;
+  }
+  .sideBar .sideBarCard {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 745px) {
+  .sideBar .logoDiv {
+    text-align: center;
+    margin: auto;
+    padding: 1.5rem 0.5rem 0;
+  }
+  .sideBar .logoDiv img {
+    max-width: 80px;
+    margin: 0;
+    border-radius: 10px;
+    padding: 0.5rem;
+  }
+  .sideBar .logoDiv h2 {
+    display: none;
+  }
+  .sideBar .menuDiv .divTitle, .sideBar .menuDiv .smallText, .sideBar .settingDiv .divTitle, .sideBar .settingDiv .smallText {
+    display: none;
+  }
+  .sideBar .menuDiv .menuList .listItem .menuLink, .sideBar .settingDiv .menuList .listItem .menuLink {
+    justify-content: center;
+  }
+  .sideBar .menuDiv .menuList .listItem .menuLink .icondh, .sideBar .settingDiv .menuList .listItem .menuLink .icondh {
+    font-size: var(--h1FontSize);
+  }
+}
+@media screen and (max-width: 390px) {
+  .sideBar .menuDiv .menuList .listItem, .sideBar .settingDiv .menuList .listItem {
+    padding: 0.2rem 0.5rem;
+  }
+  .sideBar .menuDiv .menuList .listItem .menuLink, .sideBar .settingDiv .menuList .listItem .menuLink {
+    justify-content: center;
+  }
+  .sideBar .menuDiv .menuList .listItem .menuLink .icondh, .sideBar .settingDiv .menuList .listItem .menuLink .icondh {
+    font-size: var(--h1FontSize);
+  }
+}                                       </style><style type="text/css" data-vite-dev-id="D:/Jose/FRONTEND FINAL PROJECT/client/src/Components/Dashboard/Body Section/body.css">.mainContent {
+  width: 82%;
+  height: 100%;
+  padding: 2rem;
+  overflow: auto;
+}
+.mainContent .bottom {
+  margin-top: 5rem;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-left: 1rem;
+}
+
+@media screen and (max-width: 918px) {
+  .bottom {
+    flex-direction: column;
+  }
+}                                    </style><style type="text/css" data-vite-dev-id="D:/Jose/FRONTEND FINAL PROJECT/client/src/Components/Dashboard/Body Section/Top Section/top.css">:root {
+  --primaryColor: hsl(210, 100%, 50%);
+  --hoverColor: hsl(210, 73%, 68%);
+  --paleGreen: hsl(210, 100%, 95%);
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 18%);
+  --greyText: hsl(0, 0%, 75%);
+  --bgColor: hsl(113, 11%, 85%);
+  --inputColor: hsl(330, 12%, 97%);
+  --textColor: hsl(240, 1%, 48%);
+  --bgdhColor: hsl(220, 10%, 94%);
+  --greyTextdh: rgb(190, 190, 190);
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: .938rem;
+  --smallFontSize: .813rem;
+  --smallestFontSize: .75rem;
+}
+
+.topSection .headerSection {
+  justify-content: space-between;
+}
+.topSection .headerSection .title h1 {
+  font-size: var(--h1FontSize);
+  color: var(--blackColor);
+  font-weight: 700;
+}
+.topSection .headerSection .title p {
+  font-size: var(--normalFontSize);
+  color: var(--textColor);
+  font-weight: 500;
+}
+.topSection .headerSection .searchBar {
+  padding: 1rem 2rem;
+  background: var(--whiteColor);
+  border-radius: 5px;
+  gap: 1rem;
+  box-shadow: 0 2px 4px var(--inputColor);
+}
+.topSection .headerSection .searchBar input {
+  border: none;
+  outline: none;
+  background: none;
+}
+.topSection .headerSection .searchBar .icondh {
+  color: var(--textColor);
+}
+.topSection .headerSection .searchBar .icondh:hover {
+  color: var(--primaryColor);
+}
+.topSection .headerSection .adminDiv {
+  gap: 1rem;
+}
+.topSection .headerSection .adminDiv .icondh {
+  font-size: var(--biggestFontSize);
+  background: var(--whiteColor);
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 2px 4px var(--inputColor);
+  color: var(--textColor);
+}
+.topSection .headerSection .adminDiv .adminImage {
+  border: 3px solid var(--whiteColor);
+  border-radius: 10px;
+  width: 2.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 4px var(--inputColor);
+}
+.topSection .headerSection .adminDiv .adminImage img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+.topSection .cardSection {
+  margin-top: 3rem;
+  gap: 1rem;
+}
+.topSection .cardSection .rightCard {
+  position: relative;
+  flex-basis: 70%;
+  height: 200px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.topSection .cardSection .rightCard .videoDiv {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.topSection .cardSection .rightCard .videoDiv video {
+  width: 100%;
+  height: 80%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+}
+.topSection .cardSection .rightCard h1, .topSection .cardSection .rightCard p {
+  z-index: 100;
+}
+.topSection .cardSection .rightCard h1 {
+  font-size: var(--h1FontSize);
+  color: var(--whiteColor);
+  font-weight: 800;
+}
+.topSection .cardSection .rightCard p {
+  padding: 1rem;
+  color: var(--paleGreen);
+  font-weight: 500;
+}
+
+@media screen and (max-width: 990px) {
+  .cardSection {
+    flex-direction: column;
+  }
+  .cardSection .rightCard {
+    width: 100%;
+    flex-basis: 100%;
+  }
+  .cardSection .leftCard {
+    margin-top: 2rem;
+    align-self: flex-start;
+    height: 10px !important;
+  }
+  .cardSection .leftCard .sideBarCard {
+    display: block !important;
+  }
+}
+@media screen and (max-width: 918px) {
+  .headerSection .searchBar {
+    display: none;
+  }
+}
+@media screen and (max-width: 490px) {
+  .headerSection .adminDiv {
+    display: none;
+  }
+  .headerSection .title {
+    text-align: center;
+    margin: auto;
+  }
+  .cardContent .rightCard {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 390px) {
+  .topSection .cardSection .rightCard {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .topSection .cardSection .rightCard h1 {
+    font-size: var(--h2FontSize);
+  }
+}                                   </style><style type="text/css" data-vite-dev-id="D:/Jose/FRONTEND FINAL PROJECT/client/src/Components/Dashboard/Body Section/Activity Section/activity.css">:root {
+  --primaryColor: hsl(210, 100%, 50%);
+  --hoverColor: hsl(210, 73%, 68%);
+  --paleGreen: hsl(210, 100%, 95%);
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 18%);
+  --greyText: hsl(0, 0%, 75%);
+  --bgColor: hsl(113, 11%, 85%);
+  --inputColor: hsl(330, 12%, 97%);
+  --textColor: hsl(240, 1%, 48%);
+  --bgdhColor: hsl(220, 10%, 94%);
+  --greyTextdh: rgb(190, 190, 190);
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: .938rem;
+  --smallFontSize: .813rem;
+  --smallestFontSize: .75rem;
+}
+
+.containerCard {
+  position: relative;
+  height: 150px;
+  gap: 20px;
+}
+
+.dataCard {
+  background-color: var(--whiteColor);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--textColor);
+  overflow: hidden;
+  width: 25rem;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  height: 280px;
+}
+
+@media screen and (max-width: 990px) {
+  .cardSection {
+    flex-direction: column;
+  }
+  .cardSection .rightCard {
+    width: 100%;
+    flex-basis: 100%;
+  }
+  .cardSection .leftCard {
+    margin-top: 2rem;
+    align-self: flex-start;
+    height: 10px !important;
+  }
+  .cardSection .leftCard .sideBarCard {
+    display: block !important;
+  }
+}
+@media screen and (max-width: 918px) {
+  .headerSection .searchBar {
+    display: none;
+  }
+}
+@media screen and (max-width: 490px) {
+  .headerSection .adminDiv {
+    display: none;
+  }
+  .headerSection .title {
+    text-align: center;
+    margin: auto;
+  }
+  .cardContent .rightCard {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 390px) {
+  .topSection .cardSection .rightCard {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .topSection .cardSection .rightCard h1 {
+    font-size: var(--h2FontSize);
+  }
+}                                        </style><style type="text/css" data-vite-dev-id="D:/Jose/FRONTEND FINAL PROJECT/client/src/Components/Login/Login.css">                                     </style><style type="text/css" data-vite-dev-id="D:/Jose/FRONTEND FINAL PROJECT/client/src/Components/Dashboard/Body Section/Listing Closed Section/listing.css">                                       </style><style type="text/css" data-vite-dev-id="D:/Jose/FRONTEND FINAL PROJECT/client/src/Components/Dashboard/View Section/viewSection.css">.viewMain {
+  width: 82%;
+  height: 100%;
+  padding: 2rem;
+  overflow: auto;
+}
+.viewMain .viewContent {
+  width: 100%;
+  height: 82%;
+  margin-top: 5rem;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-left: 1rem;
+  flex-direction: column;
+}
+
+.containerCloseCards {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  gap: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: -40px;
+}
+
+.cardControl1, .cardControl2 {
+  background-color: var(--whiteColor);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--textColor);
+  overflow: hidden;
+  width: 200rem;
+  justify-content: center;
+  padding: 1rem;
+  height: 320px;
+  transform: translateX(-16px);
+}
+
+.Cards3 {
+  background-color: var(--whiteColor);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--textColor);
+  overflow: hidden;
+  width: 25rem;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.containerControl {
+  margin-top: 20px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.containerControl {
+  margin-top: 20px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -20px;
+}
+
+.Cardspid {
+  background-color: var(--whiteColor);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--textColor);
+  padding: 1rem;
+  align-items: center;
+  justify-content: right;
+  overflow: hidden;
+  width: 500px;
+  height: 160px;
+  transform: translateX(-338px);
+  gap: 1rem;
+}
+
+@media screen and (max-width: 918px) {
+  .bottom {
+    flex-direction: column;
+  }
+}                                           </style><style type="text/css" data-vite-dev-id="D:/Jose/FRONTEND FINAL PROJECT/client/src/Components/Dashboard/Up Section Closed/upSection.css">:root {
+  --primaryColor: hsl(210, 100%, 50%);
+  --hoverColor: hsl(210, 73%, 68%);
+  --paleGreen: hsl(210, 100%, 95%);
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 18%);
+  --greyText: hsl(0, 0%, 75%);
+  --bgColor: hsl(113, 11%, 85%);
+  --inputColor: hsl(330, 12%, 97%);
+  --textColor: hsl(240, 1%, 48%);
+  --bgdhColor: hsl(220, 10%, 94%);
+  --greyTextdh: rgb(190, 190, 190);
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: .938rem;
+  --smallFontSize: .813rem;
+  --smallestFontSize: .75rem;
+}
+
+.upSection {
+  margin-top: 20px;
+}
+.upSection .ClosedSection {
+  justify-content: space-between;
+}
+.upSection .ClosedSection .titlePage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+.upSection .ClosedSection .titlePage h1 {
+  font-size: var(--h1FontSize);
+  color: var(--blackColor);
+  font-weight: 700;
+  margin: 0;
+  margin-left: 140px;
+}
+.upSection .ClosedSection .adminDiv {
+  gap: 1rem;
+}
+.upSection .ClosedSection .adminDiv .icondh {
+  font-size: var(--biggestFontSize);
+  background: var(--whiteColor);
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 2px 4px var(--inputColor);
+  color: var(--textColor);
+}
+.upSection .ClosedSection .adminDiv .adminImage {
+  border: 3px solid var(--whiteColor);
+  border-radius: 10px;
+  width: 3rem;
+  overflow: hidden;
+  box-shadow: 0 2px 4px var(--inputColor);
+}
+.upSection .ClosedSection .adminDiv .adminImage img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 990px) {
+  .cardSection {
+    flex-direction: column;
+  }
+  .cardSection .rightCard {
+    width: 100%;
+    flex-basis: 100%;
+  }
+  .cardSection .leftCard {
+    margin-top: 2rem;
+    align-self: flex-start;
+    height: 10px !important;
+  }
+  .cardSection .leftCard .sideBarCard {
+    display: block !important;
+  }
+}
+@media screen and (max-width: 918px) {
+  .headerSection .searchBar {
+    display: none;
+  }
+}
+@media screen and (max-width: 490px) {
+  .headerSection .adminDiv {
+    display: none;
+  }
+  .headerSection .title {
+    text-align: center;
+    margin: auto;
+  }
+}                                         </style><style type="text/css" data-vite-dev-id="D:/Jose/FRONTEND FINAL PROJECT/client/src/Components/Dashboard/Body Section/Listing Measuring Section/measuring.css">                                         </style><style type="text/css" data-vite-dev-id="D:/Jose/FRONTEND FINAL PROJECT/client/src/Components/Dashboard/ViewMeasuring/viewMeasuring.css">.viewMain {
+  width: 82%;
+  height: 100%;
+  padding: 2rem;
+  overflow: auto;
+}
+.viewMain .viewMeasuring {
+  width: 100%;
+  height: 82%;
+  margin-top: 5rem;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-left: 1rem;
+  flex-direction: column;
+}
+
+.containerMeasuringCards {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  gap: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: -40px;
+}
+
+.cardMeasuring1, .cardMeasuring2 {
+  background-color: var(--whiteColor);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--textColor);
+  overflow: hidden;
+  width: 200rem;
+  justify-content: center;
+  padding: 1rem;
+  height: 320px;
+  transform: translateX(-16px);
+}
+
+.containerMeasuringControl {
+  margin-top: 20px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -20px;
+}
+
+.CardspidControl {
+  background-color: var(--whiteColor);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--textColor);
+  padding: 1rem;
+  align-items: center;
+  justify-content: right;
+  overflow: hidden;
+  width: 500px;
+  height: 160px;
+  transform: translateX(-338px);
+  gap: 1rem;
+}
+
+.multiToggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+  transform: translateX(-22px);
+}
+.multiToggle .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.multiToggle .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.multiToggle .switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+.multiToggle .switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+.multiToggle .switch input:checked + .slider {
+  background-color: #2196F3;
+}
+.multiToggle .switch input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+.multiToggle .switch input:checked + .slider:before {
+  transform: translateX(26px);
+}
+.multiToggle .switch.round {
+  border-radius: 34px;
+}
+.multiToggle .switch.round:before {
+  border-radius: 50%;
+}
+
+.buttonControl {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media screen and (max-width: 918px) {
+  .bottom {
+    flex-direction: column;
+  }
+}                                             </style></head>
+  <body>
+    <div id="root"><div><div><div class="loginPage flex"><div class="container flex"><div class="videoDiv"><video src="/src/assets/videomedium.mp4" autoplay="" loop=""></video><div class="textDiv"><h2 class="title">Innovate, Create,  Imagine, Execute. <br> YOU ARE THE FUTURE</h2><p>CONTROL THE WORLD</p></div><div class="footerDiv flex"><span class="text">Don't have an account?</span><a href="http://localhost:5173/register"><button class="btn">Sign Up</button></a></div></div><div class="formDiv flex"><div class="headerDiv"><img src="./DCS_files/itsalogo.png" alt="logo Image"><h3>WELCOME BACK!</h3></div><form class="form grid"><span class="message"></span><div class="inputDiv"><label for="username">Username</label><div class="input flex"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 640 512" class="icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M622.3 271.1l-115.2-45c-4.1-1.6-12.6-3.7-22.2 0l-115.2 45c-10.7 4.2-17.7 14-17.7 24.9 0 111.6 68.7 188.8 132.9 213.9 9.6 3.7 18 1.6 22.2 0C558.4 489.9 640 420.5 640 296c0-10.9-7-20.7-17.7-24.9zM496 462.4V273.3l95.5 37.3c-5.6 87.1-60.9 135.4-95.5 151.8zM224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm96 40c0-2.5.8-4.8 1.1-7.2-2.5-.1-4.9-.8-7.5-.8h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c6.8 0 13.3-1.5 19.2-4-54-42.9-99.2-116.7-99.2-212z"></path></svg><input type="text" id="username" placeholder="Enter Username"></div></div><div class="inputDiv"><label for="password">Password</label><div class="input flex"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.8 11.8 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7 7 0 0 0 1.048-.625 11.8 11.8 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.54 1.54 0 0 0-1.044-1.263 63 63 0 0 0-2.887-.87C9.843.266 8.69 0 8 0m0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5"></path></svg><input type="password" id="password" placeholder="Enter Password"></div></div><button type="submit" class="btn flex"><span>Login</span><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M873.1 596.2l-164-208A32 32 0 0 0 684 376h-64.8c-6.7 0-10.4 7.7-6.3 13l144.3 183H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h695.9c26.8 0 41.7-30.8 25.2-51.8z"></path></svg></button><span class="forgotPassword">Forgot your Password? <a href="http://localhost:5173/">Click Here</a></span></form></div></div></div></div></div></div>
+    <script type="module" src="./DCS_files/main.jsx"></script>
+  
+
+</body></html>

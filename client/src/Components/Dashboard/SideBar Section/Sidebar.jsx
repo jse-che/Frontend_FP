@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import io from "socket.io-client";
 import './sidebar.css'
 
 import logo from '../../../assets/itsalogo.png'
@@ -12,7 +13,43 @@ import { IoMdLogOut } from "react-icons/io";
 //    Axios.get('http://172.16.21.5:5000/logout')
 // }
 
+const socketServerURL = "http://172.16.68.148:5000";
+
 const Sidebar = () => {
+  const [socket, setSocket] = useState(null);
+  
+
+  useEffect(() => {
+    const socketInstance = io(socketServerURL);
+    setSocket(socketInstance);
+
+    socketInstance.on('connect', () => {
+      console.log('Conectado al servidor de Socket.IO');
+    });
+
+    return () => {
+      socketInstance.disconnect();
+    };
+  }, []);
+
+  const handlemacClick = () => {
+    if (socket) {
+      socket.emit('Control_loop', {state: 'olc'});
+    }
+  };
+
+  const handleclcClick = () => {
+    if (socket) {
+      socket.emit('Control_loop', {state: 'clc'});
+    }
+  };
+
+  const handledshClick = () => {
+    if (socket) {
+      socket.emit('Control_loop', {state: 'None'});
+    }
+  };
+
 
   return (
     <div className='sideBar grid'>
@@ -26,7 +63,7 @@ const Sidebar = () => {
         </h3>
         <ul className="menuList grid">
           <li className="listItem">
-            <a href="/dashboard" className="href menuLink flex">
+            <a href="/dashboard" className="href menuLink flex" onClick={handledshClick}>
               <AiOutlinePieChart className='icondh'/>
               <span className='smallText'>
                 Dashboard
@@ -35,7 +72,7 @@ const Sidebar = () => {
           </li>
 
           <li className="listItem">
-            <a href="/clc" className="href menuLink flex">
+            <a href="/clc" className="href menuLink flex" onClick={handleclcClick}>
               <IoMdSpeedometer className='icondh'/>
               <span className='smallText'>
                 Closed Loop Control
@@ -44,31 +81,13 @@ const Sidebar = () => {
           </li>
 
           <li className="listItem">
-            <a href="/mac" className="href menuLink flex">
+            <a href="/mac" className="href menuLink flex" onClick={handlemacClick}>
               <IoMdSpeedometer className='icondh'/>
               <span className='smallText'>
                 Measuring and Control
               </span>
             </a>
           </li>
-{/* 
-          <li className="listItem">
-            <a href="#" className="href menuLink flex">
-              <IoMdSpeedometer className='icondh'/>
-              <span className='smallText'>
-                Dashboard
-              </span>
-            </a>
-          </li>
-
-          <li className="listItem">
-            <a href="#" className="href menuLink flex">
-              <IoMdSpeedometer className='icondh'/>
-              <span className='smallText'>
-                Dashboard
-              </span>
-            </a>
-          </li> */}
         </ul>
       </div>
 

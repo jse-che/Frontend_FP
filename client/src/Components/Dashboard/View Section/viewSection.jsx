@@ -48,7 +48,15 @@ const View = () => {
     labels: [],
     datasets: [
       {
-        label: 'X',
+        label: 'PV',
+        data: [],
+        fill: false,
+        borderColor: 'rgb(255, 159, 64)',
+        tension: 0.1,
+        pointRadius: 0
+      },
+      {
+        label: 'SP',
         data: [],
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
@@ -56,7 +64,7 @@ const View = () => {
         pointRadius: 0
       },
       {
-        label: 'SP',
+        label: 'CP',
         data: [],
         fill: false,
         borderColor: 'rgb(255, 99, 132)',
@@ -230,7 +238,15 @@ const View = () => {
       labels: [],
       datasets: [
         {
-          label: 'X',
+          label: 'PV',
+          data: [],
+          fill: false,
+          borderColor: 'rgb(255, 159, 64)',
+          tension: 0.1,
+          pointRadius: 0
+        },
+        {
+          label: 'SP',
           data: [],
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
@@ -238,7 +254,7 @@ const View = () => {
           pointRadius: 0
         },
         {
-          label: 'SP',
+          label: 'CP',
           data: [],
           fill: false,
           borderColor: 'rgb(255, 99, 132)',

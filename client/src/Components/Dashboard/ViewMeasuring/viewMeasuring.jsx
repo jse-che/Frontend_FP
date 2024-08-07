@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
-
-import { Stack, Typography, Slider, Button, Box, Tooltip, Grid, styled } from '@mui/material';
+import { Stack, Typography, Slider, Button, Grid, styled } from '@mui/material';
 import MuiInput from '@mui/material/Input';
-
-import { Line } from 'react-chartjs-2';
-import 'chart.js/auto';
-
 import '../ViewMeasuring/viewMeasuring.css';
 import Up from "../Up Section Closed/upSection";
 
@@ -14,19 +9,27 @@ const Input = styled(MuiInput)`
   width: 35px;
 `;
 
-const socketServerURL = "http://localhost:3000";
+// const socketServerURL = "http://172.16.68.148/measuringAndControl:5000";
+const socketServerURL = "http://172.16.68.148:5000";
 
 const ViewMeasuring = () => {
+  const [socket, setSocket] = useState(null);
+  const [pidValues, setPidValues] = useState({ P: 0, I: 0 });
 
-  const [pidValues, setPidValues] = useState({
-    P: 0,
-    I: 0,
-  });
+  const inputLabels = { P: "Kp", I: "Tr" };
 
-  const inputLabels = {
-    P: "Kp",
-    I: "Tr",
-  };
+  useEffect(() => {
+    const socketInstance = io(socketServerURL);
+    setSocket(socketInstance);
+
+    socketInstance.on('connect', () => {
+      console.log('Conectado al servidor de Socket.IO');
+    });
+
+    return () => {
+      socketInstance.disconnect();
+    };
+  }, []);
 
   const handleInputChange = (name) => (event) => {
     const value = event.target.value === '' ? 0 : Number(event.target.value);
@@ -34,18 +37,7 @@ const ViewMeasuring = () => {
       ...prevValues,
       [name]: value
     }));
-    if (name === 'SP') {
-      setLevels((prevLevels) => ({
-        ...prevLevels,
-        tankLevel: value
-      }));
-      setChartData((prevChartData) => {
-        const newChartData = { ...prevChartData };
-        newChartData.datasets[1].data.push(value);
-        newChartData.labels.push(new Date().toLocaleTimeString());
-        return newChartData;
-      });
-    }
+
     if (socket) {
       socket.emit('pidValuesChange', { [name]: value });
     }
@@ -70,22 +62,47 @@ const ViewMeasuring = () => {
       ...prevValues,
       [name]: newValue
     }));
-    if (name === 'SP') {
-      setLevels((prevLevels) => ({
-        ...prevLevels,
-        tankLevel: newValue
-      }));
-      setChartData((prevChartData) => {
-        const newChartData = { ...prevChartData };
-        newChartData.datasets[1].data.push(newValue);
-        newChartData.labels.push(new Date().toLocaleTimeString());
-        return newChartData;
-      });
-    }
+
     if (socket) {
       socket.emit('pidValuesChange', { [name]: newValue });
     }
   };
+
+  const handleStartClick = () => {
+    if (socket) {
+      socket.emit('Control_level', {state: 'Start'});
+    }
+  };
+
+  const handleStopClick = () => {
+    if (socket) {
+      socket.emit('toggle_device', {state: 'off'});
+    }
+  };
+
+  const handleonClick = (event)=>{
+    const isChecked = event.target.checked;
+    if (isChecked && socket) {
+      socket.emit('toggle_device', {state: 'on'});
+    }
+  };
+
+
+
+  // const handleToggleChange = (index) => (event) => {
+  //   const isChecked = event.target.checked;
+  //   if (isChecked && socket) {
+  //     const messages = [
+  //       'on',
+  //       'Mensaje 2',
+  //       'Mensaje 3',
+  //       'Mensaje 4',
+  //       'Mensaje 5',
+  //       'Mensaje 6',
+  //     ];
+  //     socket.emit('message', messages[index]);
+  //   }
+  // };
 
   return (
     <div className='viewMain'>
@@ -93,19 +110,18 @@ const ViewMeasuring = () => {
       <div className='viewMeasuring flex'>
         <div className="containerMeasuringCards">
           <div className="cardMeasuring1 flex"></div>
-          <div className="cardMeasuring2 flex">
-          </div>
+          <div className="cardMeasuring2 flex"></div>
         </div>
         <div className="containerMeasuringControl">
           <div className="CardspidControl flex">
-          <Grid container spacing={1} sx={{ mr: 2, mt:-3 }}>
+            <Grid container spacing={1} sx={{ mr: 2, mt: -3 }}>
               <Grid item>
                 <Stack spacing={1} direction="column">
                   {['P', 'I'].map((name) => (
                     <div key={name} style={{ display: 'flex', alignItems: 'center' }}>
                       <Typography sx={{ mr: 1 }}>{inputLabels[name]}</Typography>
                       <Input
-                        sx={{mt:3}}
+                        sx={{ mt: 3 }}
                         key={name}
                         value={pidValues[name]}
                         size="small"
@@ -151,10 +167,20 @@ const ViewMeasuring = () => {
                 </Stack>
               </Grid>
             </Grid>
+            <div className="multiToggle">
+              {Array.from({ length: 6 }, (_, index) => (
+                <div key={index} className={`Toggle${index + 1}`}>
+                  <label className="switch">
+                    <input type="checkbox" onChange={handleonClick} />
+                    <span className="slider"></span>
+                  </label>
+                </div>
+              ))}
+            </div>
             <div className="buttonControl flex">
-              <Stack sx={{ml:-1, p:.5}}spacing={1} direction="column">
-                <Button variant="contained" color="success">Start</Button>
-                <Button variant="contained" color="error">Stop</Button>
+              <Stack sx={{ ml: -1, p: .5 }} spacing={1} direction="column">
+                <Button variant="contained" color="success" onClick={handleStartClick}>Start</Button>
+                <Button variant="contained" color="error" onClick={handleStopClick}>Stop</Button>
                 <Button variant="contained" color="primary">Reset</Button>
               </Stack>
             </div>
@@ -165,4 +191,4 @@ const ViewMeasuring = () => {
   );
 }
 
-export default ViewMeasuring
+export default ViewMeasuring;
